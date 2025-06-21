@@ -1,0 +1,57 @@
+<div class="contact">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 ms-5">
+        <h3 class="fs-1">Contact</h3>
+        <p class="fst-italic">
+          We're here to help! Feel free to reach out for any inquiries or feedback. Your opinions matter to us.
+        </p>
+
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" novalidate>
+          <label for="name" class="form-label mt-3">Name</label>
+          <input
+            id="name"
+            type="text"
+            class="form-control"
+            placeholder="Your Name"
+            formControlName="name"
+            [class.is-invalid]="contactForm.get('name')?.invalid && contactForm.get('name')?.touched"
+          />
+          <div class="invalid-feedback" *ngIf="contactForm.get('name')?.invalid && contactForm.get('name')?.touched">
+            Name is required.
+          </div>
+
+          <label for="email" class="form-label mt-3">Email address</label>
+          <input
+            id="email"
+            type="email"
+            class="form-control"
+            placeholder="name@example.com"
+            formControlName="email"
+            [class.is-invalid]="contactForm.get('email')?.invalid && contactForm.get('email')?.touched"
+          />
+          <div class="invalid-feedback" *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched">
+            Please enter a valid email.
+          </div>
+
+          <label for="message" class="form-label mt-3">Message</label>
+          <textarea
+            id="message"
+            rows="3"
+            class="form-control"
+            placeholder="Your Message"
+            formControlName="message"
+            [class.is-invalid]="contactForm.get('message')?.invalid && contactForm.get('message')?.touched"
+          ></textarea>
+          <div class="invalid-feedback" *ngIf="contactForm.get('message')?.invalid && contactForm.get('message')?.touched">
+            Message is required.
+          </div>
+
+          <button type="submit" class="btn btn-outline-secondary mt-3 me-0">
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

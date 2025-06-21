@@ -1,0 +1,63 @@
+<div class="form-container">
+    <form id="product-form" method="POST" enctype="multipart/form-data" novalidate>
+      <div class="instructions mb-3">
+        <p>Fill in all required fields. Fields marked with <span style="color: red;">*</span> are mandatory.</p>
+      </div>
+
+        <h5 class="mb-3">Your Information</h5>
+
+    <div class="row">
+      <div class="col-md-6 col-12 mb-3">
+        <label for="user-name">Your Name <span style="color: red;">*</span></label>
+        <input type="text" name="user-name" id="user-name" class="form-control" placeholder="Enter your name" required>
+      </div>
+
+      <div class="col-md-6 col-12 mb-3">
+        <label for="user-phone">Phone Number <span style="color: red;">*</span></label>
+        <input type="tel" name="user-phone" id="user-phone" class="form-control" placeholder="Enter your phone" required>
+      </div>
+
+      <div class="col-md-6 col-12 mb-3">
+        <label for="national-id">National ID <span style="color: red;">*</span></label>
+        <input type="text" name="national-id" id="national-id" class="form-control" placeholder="Enter your national ID" required>
+      </div>
+    </div>
+  
+    <!-- بيانات المنتج اللي عايزة تبادليه -->
+    <h5 class="mt-4 mb-3">Product You Want to Sell</h5>
+      <div class="row">
+        <div class="col-md-6 col-12 mb-3">
+          <label for="product-name">Product Name<span style="color: red;">*</span></label>
+          <input type="text" name="product-name" id="product-name" class="form-control" placeholder="Enter product name">
+        </div>
+  
+        <div class="col-md-6 col-12 mb-3">
+          <label for="price">Price<span style="color: red;">*</span></label>
+          <input type="number" name="price" id="price" class="form-control" placeholder="Enter product price">
+        </div>
+  
+        <div class="col-md-6 col-12 mb-3">
+          <label for="size">Size<span style="color: red;">*</span></label>
+          <input type="text" name="size" id="size" class="form-control" placeholder="Enter product size (e.g., S, M, L)">
+        </div>
+  
+        <div class="col-md-6 col-12 mb-3">
+          <label for="color">Color<span style="color: red;">*</span></label>
+          <input type="text" name="color" id="color" class="form-control" placeholder="Enter product color">
+        </div>
+  
+       
+  
+        <div class="col-12 mb-3">
+          <label for="image">Upload Image<span style="color: red;">*</span></label>
+          <input type="file" name="image" id="image" class="form-control" />
+        </div>
+      </div>
+  
+      <div class="d-flex justify-content-end mt-4">
+                           <button type="button" class="btn btn-outline-secondary mt-3 me-0">Submit</button>
+
+      </div>
+    </form>
+  </div>
+  

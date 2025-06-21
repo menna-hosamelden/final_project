@@ -1,0 +1,145 @@
+<section>
+  <div class="instructions mb-3">
+    <p>
+      Fill in all required fields to create your account. Fields marked with
+      <span style="color: red">*</span> are mandatory.
+    </p>
+  </div>
+  <form [formGroup]="signUpForm" (ngSubmit)="signUpSubmit()">
+    <div class="mb-3">
+      <label for="fname"
+        >Full Name<span class="asterisk" style="color: red">*</span></label
+      >
+      <input
+        type="text"
+        formControlName="name"
+        name="fname"
+        id="fname"
+        class="form-control"
+        placeholder="Enter your name"
+        required
+      />
+      @if(signUpForm.get('name')?.errors && signUpForm.get('name')?.touched){
+      <div class="alert alert-danger w-50">
+        @if(signUpForm.get('name')?.getError('required')){
+        <p class="m-0">Name is required</p>
+        } @else if (signUpForm.get('name')?.getError('minlength')) {
+        <p class="m-0">Name should be more than or equal 3 characters</p>
+        } @else if (signUpForm.get('name')?.getError('maxlength')) {
+        <p class="m-0">Name should be less than or equal 20 characters</p>
+        }
+      </div>
+      }
+    </div>
+
+    <div class="mb-3">
+      <label for="email"
+        >Email Address<span class="asterisk" style="color: red">*</span></label
+      >
+      <input
+        type="email"
+        name="email"
+        formControlName="email"
+        id="email"
+        class="form-control"
+        placeholder="Enter your email address"
+        required
+      />
+      @if(signUpForm.get('email')?.errors && signUpForm.get('email')?.touched){
+      <div class="alert alert-danger w-50">
+        @if(signUpForm.get('email')?.getError('required')){
+        <p class="m-0">Email is required</p>
+        } @else if (signUpForm.get('email')?.getError('email')) {
+        <p class="m-0">Email is not valid</p>
+        }
+      </div>
+      }
+    </div>
+    <div class="mb-3">
+      <label for="phone"
+        >Phone<span class="asterisk" style="color: red">*</span></label
+      >
+      <input
+        type="phone"
+        formControlName="phone"
+        name="phone"
+        id="phone"
+        class="form-control"
+        placeholder="Enter your phone"
+        required
+      />
+      @if(signUpForm.get('phone')?.errors && signUpForm.get('phone')?.touched){
+      <div class="alert alert-danger w-50">
+        @if(signUpForm.get('phone')?.getError('required')){
+        <p class="m-0">Phone is required</p>
+        } @else if (signUpForm.get('phone')?.getError('pattern')) {
+        <p class="m-0">Phone is not valid</p>
+        }
+      </div>
+      }
+    </div>
+
+    <div class="mb-3">
+      <label for="password"
+        >Password<span class="asterisk" style="color: red">*</span></label
+      >
+      <input
+        type="password"
+        formControlName="password"
+        name="password"
+        id="password"
+        class="form-control"
+        placeholder="Enter your password"
+        required
+      />
+      @if(signUpForm.get('password')?.errors &&
+      signUpForm.get('password')?.touched){
+      <div class="alert alert-danger w-50">
+        @if(signUpForm.get('password')?.getError('required')){
+        <p class="m-0">Password is required</p>
+        } @else if (signUpForm.get('password')?.getError('pattern')) {
+        <p class="m-0">Password is not valid</p>
+        }
+      </div>
+      }
+    </div>
+
+    <div class="mb-3">
+      <label for="rePassword"
+        >Confirm Password<span class="asterisk" style="color: red"
+          >*</span
+        ></label
+      >
+      <input
+        type="password"
+        formControlName="rePassword"
+        name="rePassword"
+        id="rePassword"
+        class="form-control"
+        placeholder="Confirm your password"
+        required
+      />
+      @if(signUpForm.getError('mismatch') &&
+      signUpForm.get('rePassword')?.touched){
+      <p class="alert alert-danger w-50 m-0">
+        Password confirmation does not match
+      </p>
+      }
+    </div>
+
+    <button
+      [disabled]="!signUpForm.valid || isLoding"
+      type="submit"
+      class="btn btn-secondary ms-auto d-block text-center"
+    >
+      Sign Up @if(isLoding){
+      <span><i class="fas fa-spin fa-spinner"></i></span>
+
+      }
+    </button>
+    @if(msgError){
+    <p class="alert alert-danger w-50 m-0">{{ msgError }}</p>
+
+    }
+  </form>
+</section>

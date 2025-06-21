@@ -1,0 +1,55 @@
+<!-- زر فتح الشات -->
+<button (click)="openSupportChat()" *ngIf="!isOpenSupportChat" 
+  style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; 
+         padding: 15px 30px; background-color: #a57179; color: white; border-radius: 50%;
+         font-size: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); width: 70px; 
+         height: 70px; display: flex; justify-content: center; align-items: center;">
+  💬
+</button>
+
+<!-- واجهة الشات -->
+<div class="support-chat" *ngIf="isOpenSupportChat" 
+  style="position: fixed; bottom: 80px; right: 20px; width: 500px; max-height: 500px; 
+         background-color: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+         overflow-y: auto;">
+  
+  <div class="chat-header" style="background-color: #86654b; color: white; padding: 15px; text-align: center; 
+       font-size: 18px; border-radius: 10px 10px 0 0;">
+Chat With Us    <button (click)="closeChat()" style="position: absolute; top: 10px; right: 10px; 
+        background: none; border: none; color: white; font-size: 24px;">×</button>
+  </div>
+
+  <div class="chat-messages" style="padding: 15px; max-height: 400px; overflow-y: auto;">
+    <div *ngFor="let message of messages" [ngClass]="{
+        'sent': message.senderId === currentUserId,
+        'received': message.senderId !== currentUserId
+      }">
+      <div class="message-container" style="display: flex; margin-bottom: 15px;">
+        <!-- صورة المستخدم -->
+        <div class="message-avatar" style="margin-right: 10px;">
+          <img [src]="message.senderId === currentUserId ? currentUserAvatar : participantAvatar" 
+               alt="User Avatar" 
+               style="width: 45px; height: 45px; border-radius: 50%; object-fit: cover;" />
+        </div>
+
+        <!-- الرسالة والمحتوى -->
+        <div class="message-content" style="flex: 1; background-color: #f1f1f1; padding: 10px; 
+             border-radius: 10px; max-width: 250px;">
+          <p style="margin: 0; font-size: 14px; color: #333;">{{ message.content }}</p>
+          <span class="message-time" style="font-size: 12px; color: #888;">{{ message.time | date:'shortTime' }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <form [formGroup]="chatForm" (ngSubmit)="sendMessage()" 
+        style="display: flex; padding: 10px; background-color: #f1f1f1; border-radius: 0 0 10px 10px;">
+    <input type="text" formControlName="content" placeholder="Type your message..." 
+      style="flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 20px; font-size: 14px; color: #333;" />
+    <button type="submit" [disabled]="chatForm.invalid" 
+      style="background-color: #86654b; color: white; border: none; padding: 10px 20px; 
+             border-radius: 20px; margin-left: 10px; font-size: 14px; cursor: pointer;">
+      Send
+    </button>
+  </form>
+</div>

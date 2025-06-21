@@ -1,0 +1,27 @@
+<section class="bg-main-light rounded-4 shadow my-2 w-75 mx-auto">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+            <h1 class="h2 mt-2">Shop Cart</h1>
+            <button (click)="clearItem()" class="btn btn-outline-danger btn-sm">Clear Cart</button>
+        </div>
+        
+        <p class="text-main">Total Cart Price : {{cartDetails.totalCartPrice | currency: 'GBP'}}</p>
+        @for(item of cartDetails.products; track item.product.id){
+            <div class="row mb-2 border-bottom">
+                <div class="col-md-1">
+                    <div>
+                        <img class="w-100" [src]="item.product.imageCover" [alt]="item.product.title">
+                    </div>
+                </div>
+                <div class="col-md-11">
+                    <div>
+                        <h3 class="h5">{{item.product.title}}</h3>
+                        <p class="text-main m-0">Price : {{item.price | currency: 'GBP'}}</p>
+                       <button (click)="removeItem(item.product.id)" class="text-danger btn p-0 cr"><i class="fa-solid fa-trash"></i></button> 
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+</section>
